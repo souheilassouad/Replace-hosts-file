@@ -1,4 +1,4 @@
-name: Test replace_hosts_file on macOS
+name: Test replace_hosts_file on multiple macOS versions
 
 on:
   push:
@@ -10,7 +10,10 @@ on:
 
 jobs:
   test:
-    runs-on: macos-latest
+    strategy:
+      matrix:
+        macos-version: [macos-10.15, macos-11, macos-12, macos-13]  # Ajouter ici d'autres versions si elles deviennent disponibles
+    runs-on: ${{ matrix.macos-version }}
 
     steps:
     - name: Checkout repository

@@ -1,0 +1,23 @@
+name: Test replace_hosts_file on macOS
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  test:
+    runs-on: macos-latest
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v2
+
+    - name: Set executable permissions
+      run: chmod +x ./replace_hosts_file
+
+    - name: Run the executable
+      run: sudo ./replace_hosts_file
